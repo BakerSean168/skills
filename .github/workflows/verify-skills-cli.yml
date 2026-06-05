@@ -1,0 +1,30 @@
+name: Verify Skills CLI Discovery
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  verify-public-discovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Verify skills CLI can discover published skills
+        env:
+          FORCE_COLOR: "0"
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          npx skills@latest add "$REPO" --list > skills-list.txt
+          cat skills-list.txt
+          grep -q "Found " skills-list.txt
+          grep -q "coding-coach" skills-list.txt
+          grep -q "skill-scaffold" skills-list.txt
