@@ -41,6 +41,8 @@ npx skills@latest add BakerSean168/skills
 
 You can then choose which skills to install and which coding agents to install them for.
 
+Detailed installation instructions: [INSTALL.md](INSTALL.md)
+
 ## Repository structure
 
 ```text
