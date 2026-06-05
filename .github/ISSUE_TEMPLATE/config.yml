@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Repository conventions
+    url: https://github.com/BakerSean168/skills/blob/main/AGENTS.md
+    about: Read the repository conventions before proposing structural changes.
