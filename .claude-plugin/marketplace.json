@@ -1,0 +1,22 @@
+{
+  "name": "bakersean-skills",
+  "owner": {
+    "name": "bakersean"
+  },
+  "metadata": {
+    "description": "Reusable agent skills for coding, learning, and skill authoring.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "core-skills",
+      "description": "Core coaching and scaffolding skills from this repository.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/coding-coach",
+        "./skills/skill-scaffold"
+      ]
+    }
+  ]
+}

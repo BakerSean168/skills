@@ -2,7 +2,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
-$excludedDirs = @(".git", ".github", "scripts")
+$catalogRoot = Join-Path $repoRoot "skills"
 $errors = New-Object System.Collections.Generic.List[string]
 
 function Add-Error {
@@ -78,12 +78,17 @@ function Test-AgentsMetadata {
     }
 }
 
-$topLevelDirs = Get-ChildItem -LiteralPath $repoRoot -Directory | Where-Object {
-    $excludedDirs -notcontains $_.Name
+if (-not (Test-Path -LiteralPath $catalogRoot)) {
+    Add-Error "Missing root skills/ catalog directory."
+}
+
+$topLevelDirs = @()
+if (Test-Path -LiteralPath $catalogRoot) {
+    $topLevelDirs = @(Get-ChildItem -LiteralPath $catalogRoot -Directory)
 }
 
 if ($topLevelDirs.Count -eq 0) {
-    Add-Error "No top-level skill directories found."
+    Add-Error "No skill directories found under skills/."
 }
 
 foreach ($dir in $topLevelDirs) {
@@ -99,32 +104,32 @@ foreach ($dir in $topLevelDirs) {
         $frontmatterLines = Get-Frontmatter -Path $skillFile
         $frontmatter = Parse-Frontmatter -Lines $frontmatterLines
     } catch {
-        Add-Error "Invalid frontmatter in '$skillName/SKILL.md': $($_.Exception.Message)"
+        Add-Error "Invalid frontmatter in 'skills/$skillName/SKILL.md': $($_.Exception.Message)"
         continue
     }
 
     $keys = @($frontmatter.Keys)
     $unexpectedKeys = @($keys | Where-Object { $_ -notin @("name", "description") })
     if ($unexpectedKeys.Count -gt 0) {
-        Add-Error "'$skillName/SKILL.md' has unexpected frontmatter keys: $($unexpectedKeys -join ', ')."
+        Add-Error "'skills/$skillName/SKILL.md' has unexpected frontmatter keys: $($unexpectedKeys -join ', ')."
     }
 
     if (-not $frontmatter.ContainsKey("name")) {
-        Add-Error "'$skillName/SKILL.md' is missing the 'name' field."
+        Add-Error "'skills/$skillName/SKILL.md' is missing the 'name' field."
     } elseif ($frontmatter["name"] -ne $skillName) {
-        Add-Error "'$skillName/SKILL.md' has name '$($frontmatter["name"])' but folder name is '$skillName'."
+        Add-Error "'skills/$skillName/SKILL.md' has name '$($frontmatter["name"])' but folder name is '$skillName'."
     }
 
     if (-not $frontmatter.ContainsKey("description")) {
-        Add-Error "'$skillName/SKILL.md' is missing the 'description' field."
+        Add-Error "'skills/$skillName/SKILL.md' is missing the 'description' field."
     } else {
         $description = $frontmatter["description"]
         if ([string]::IsNullOrWhiteSpace($description)) {
-            Add-Error "'$skillName/SKILL.md' has an empty description."
+            Add-Error "'skills/$skillName/SKILL.md' has an empty description."
         }
 
         if ($description -notmatch "Use when") {
-            Add-Error "'$skillName/SKILL.md' description should include explicit trigger text such as 'Use when ...'."
+            Add-Error "'skills/$skillName/SKILL.md' description should include explicit trigger text such as 'Use when ...'."
         }
     }
 

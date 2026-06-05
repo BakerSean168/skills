@@ -4,16 +4,17 @@ This repository stores agent skills as standalone folders.
 
 ## Layout
 
-Each skill lives at the repository root:
+Each skill lives under the repository's `skills/` catalog directory:
 
 ```text
-<skill-name>/
-  SKILL.md
-  agents/
-    openai.yaml
-  references/
-  assets/
-  scripts/
+skills/
+  <skill-name>/
+    SKILL.md
+    agents/
+      openai.yaml
+    references/
+    assets/
+    scripts/
 ```
 
 Only `SKILL.md` is required. Create other folders only when they are useful.
@@ -23,6 +24,7 @@ Only `SKILL.md` is required. Create other folders only when they are useful.
 - Use lowercase kebab-case for skill folder names.
 - Keep names short and action-oriented.
 - Match the skill folder name with the `name` field in `SKILL.md`.
+- Place every real skill inside `skills/<skill-name>/`.
 
 ## `SKILL.md`
 
@@ -91,3 +93,4 @@ Before considering a skill ready, check:
 - references are linked from `SKILL.md`
 - optional folders exist only if needed
 - templates are user-editable
+- the skill lives under `skills/`

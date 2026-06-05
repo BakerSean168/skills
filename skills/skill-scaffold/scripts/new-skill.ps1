@@ -58,11 +58,12 @@ function Render-Template {
 
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $skillRoot = Split-Path -Parent $scriptRoot
-$repoRoot = Split-Path -Parent $skillRoot
+$catalogRoot = Split-Path -Parent $skillRoot
+$repoRoot = Split-Path -Parent $catalogRoot
 $templateRoot = Join-Path $skillRoot "assets\templates"
 
 $normalizedName = To-KebabCase -Value $SkillName
-$resolvedOutputRoot = if ($OutputRoot) { $OutputRoot } else { $repoRoot }
+$resolvedOutputRoot = if ($OutputRoot) { $OutputRoot } else { $catalogRoot }
 $targetDir = Join-Path $resolvedOutputRoot $normalizedName
 
 if ((Test-Path -LiteralPath $targetDir) -and -not $Force) {

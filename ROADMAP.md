@@ -7,6 +7,7 @@ The repository currently contains:
 - a coaching-first learning skill
 - a repository-specific skill scaffold tool
 - shared repo conventions in `AGENTS.md`
+- a standard `skills/` catalog layout for installer compatibility
 
 ## Near-term
 

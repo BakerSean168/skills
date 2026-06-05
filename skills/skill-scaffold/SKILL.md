@@ -5,11 +5,11 @@ description: Scaffold new skills for this repository with consistent folder layo
 
 # Skill Scaffold
 
-Create new skills in this repository by following [../AGENTS.md](../AGENTS.md) and using the bundled scaffold script.
+Create new skills in this repository by following [../../AGENTS.md](../../AGENTS.md) and using the bundled scaffold script.
 
 ## Default workflow
 
-1. Read [../AGENTS.md](../AGENTS.md) to confirm the local repo rules.
+1. Read [../../AGENTS.md](../../AGENTS.md) to confirm the local repo rules.
 2. Derive a lowercase kebab-case skill id.
 3. Decide which optional folders are actually needed: `references`, `assets`, `scripts`.
 4. Run [scripts/new-skill.ps1](scripts/new-skill.ps1) to generate the skeleton.
@@ -23,7 +23,7 @@ Run the script with the smallest useful set of resources.
 Example:
 
 ```powershell
-pwsh -File .\skill-scaffold\scripts\new-skill.ps1 `
+pwsh -File .\skills\skill-scaffold\scripts\new-skill.ps1 `
   -SkillName "sql-coach" `
   -Description "Coach SQL learning and query practice. Use when the user wants step-by-step SQL help, exercises, or review." `
   -DisplayName "SQL Coach" `

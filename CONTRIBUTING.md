@@ -8,13 +8,14 @@ This repository stores small, focused agent skills.
 2. Prefer concise, procedural instructions.
 3. Keep trigger descriptions explicit.
 4. Add optional folders only when they are genuinely needed.
+5. Place skills under [`skills/`](skills).
 
 ## Adding a new skill
 
 The fastest path is:
 
 ```powershell
-pwsh -File .\skill-scaffold\scripts\new-skill.ps1 `
+pwsh -File .\skills\skill-scaffold\scripts\new-skill.ps1 `
   -SkillName "my-skill" `
   -Description "Describe the skill. Use when the trigger conditions apply."
 ```
@@ -27,6 +28,7 @@ Then replace placeholders and remove anything the skill does not need.
 - keep references linked directly from `SKILL.md`
 - avoid adding bulky generic filler
 - keep names and descriptions aligned with the real trigger conditions
+- keep the repository on the standard `skills/<skill-name>/` layout
 
 ## Pull requests
 

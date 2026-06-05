@@ -2,11 +2,11 @@
 
 This skill scaffolds new skills for the local `skills` repository.
 
-Source of truth: [../../AGENTS.md](../../AGENTS.md)
+Source of truth: [../../../AGENTS.md](../../../AGENTS.md)
 
 ## Required conventions
 
-- One skill per top-level folder
+- One skill per folder under `skills/`
 - Folder name matches `name` in `SKILL.md`
 - Use lowercase kebab-case folder names
 - Keep YAML frontmatter limited to `name` and `description`
