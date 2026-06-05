@@ -1,0 +1,5 @@
+version: 1
+agent:
+  display_name: Skill Scaffold
+  short_description: Bootstrap new skills for this repository.
+  default_prompt: Create or normalize a skill for this repository using the local folder, metadata, and template conventions.
